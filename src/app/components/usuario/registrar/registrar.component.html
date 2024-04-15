@@ -1,0 +1,79 @@
+<div class="card-body">
+  <div class="row" id="bodyForm">
+    <div class="col-md-5 d-none d-md-block" style="height: 450px">
+      <div class="text-center col-md-12 my-auto side-heder">
+        <h1>Cadastro de Usuário</h1>
+        <img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px" />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
+        <div class="pb-2 d-block d-md-none">
+          <h3 class="border-bottom">Cadastro de Usuário</h3>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <label>Nome</label>
+            <input type="text" class="form-control" [ngClass]="{
+                    'is-invalid': f.nome?.errors && f.nome?.touched
+                  }" formControlName="nome" placeholder="Insira o nome" />
+            <div class="invalid-feedback">Campo Nome é obrigatório</div>
+          </div>
+        </div>
+        <div id="emailUsuario">
+          <label for="">Email:</label>
+          <input type="text" class="form-control" [ngClass]="{
+                  'is-invalid': f.email?.errors && f.email?.touched
+                }" formControlName="email" placeholder="Insira o email" />
+          <div *ngIf="f.email?.hasError('required')" class="invalid-feedback">
+            Campo E-mail é obrigatório
+          </div>
+          <div *ngIf="f.email?.hasError('email')" class="invalid-feedback">
+            Informe um E-mail válido.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="">Senha:</label>
+            <input type="password" class="form-control" [ngClass]="{
+                    'is-invalid': f.password?.errors && f.password?.touched
+                  }" formControlName="password" autocomplete="new-password" placeholder="Digite uma Senha" />
+            <div *ngIf="f.password?.hasError('required')" class="invalid-feedback">
+              Campo Senha é obrigatório
+            </div>
+            <div *ngIf="f.password?.hasError('minlength')" class="invalid-feedback">
+              Campo Senha deve ter no mínimo 6 caracteres.
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="">Confirmar Senha:</label>
+            <input type="password" class="form-control" [ngClass]="{
+                    'is-invalid':
+                      f.confirmPassword?.errors && f.confirmPassword?.touched
+                  }" formControlName="confirmPassword" autocomplete="new-password" placeholder="Confirme a Senha" />
+            <div *ngIf="f.confirmPassword?.hasError('required')" class="invalid-feedback">
+              Campo Confirmar Password é obrigatório
+            </div>
+            <div *ngIf="f.confirmPassword?.hasError('MustMatch')" class="invalid-feedback">
+              Confirmação de password divergente.
+            </div>
+          </div>
+        </div>
+
+        <div class="row p-1">
+          <div class="col-12">
+            <button type="submit" class="btnEntrar col-12" [disabled]="!form.valid">
+              Registrar
+            </button>
+          </div>
+          <div class="row p-auto">
+            <a id="jaCadastrado" class="underlineHover" routerLink="/usuario/login">
+              Já sou Cadastrado
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
