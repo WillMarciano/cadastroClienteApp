@@ -13,7 +13,7 @@
                     <th class="" scope="col">Nome</th>
                     <th class="" scope="col">Email</th>
                     <th class="" scope="col">Logotipo Blob</th>
-                    <th class="" scope="col">logradouro</th>
+                    <th class="" scope="col">Endereços</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,9 +26,10 @@
                     <th>{{ cliente.id }}</th>
                     <td class="">{{ cliente.nome }}</td>
                     <td class="">{{ cliente.email }}</td>
-                    <td class="">{{ cliente.logotipo }}</td>
-                    <!-- <td class="">{{ cliente.logotipo.slice(0, 10) }}</td> -->
-                    <td class="">{{ cliente.logradouros[0]?.endereco }}</td>
+                    <td class="">{{ cliente.logotipo.slice(0, 10) }}</td>
+                    <td class="">
+                        <button class="btn btn-primary" (click)="navegarParaHome()">Visualizar Endereços</button>
+                      </td>
                 </tr>
             </tbody>
         </table>

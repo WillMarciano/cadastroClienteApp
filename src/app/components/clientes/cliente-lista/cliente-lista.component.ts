@@ -36,6 +36,10 @@ export class ClienteListaComponent {
     this.buscarCliente();
   }
 
+  navegarParaHome() {
+    this.router.navigate(['/']);
+  }
+
   public alterImage(): void {
     this.exibirImagem = !this.exibirImagem;
   }
