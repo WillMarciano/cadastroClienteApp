@@ -37,7 +37,6 @@ import { LoginComponent } from './components/usuario/login/login.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
 import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
-import { LogradouroComponent } from './components/logradouro/logradouro.component';
 import { LogradourosComponent } from './components/logradouros/logradouros.component';
 import { LogradouroListaComponent } from './components/logradouros/logradouro-lista/logradouro-lista.component';
 import { LogradouroDetalhesComponent } from './components/logradouros/logradouro-detalhes/logradouro-detalhes.component';
@@ -62,7 +61,6 @@ export function tokenGetter() {
     ClientesComponent,
     ClienteListaComponent,
     ClienteDetalheComponent,
-    LogradouroComponent,
     LogradourosComponent,
     LogradouroListaComponent,
     LogradouroDetalhesComponent,
