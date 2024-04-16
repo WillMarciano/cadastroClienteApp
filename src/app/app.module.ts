@@ -35,6 +35,8 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { ClienteListaComponent } from './components/cliente-lista/cliente-lista.component';
+import { ClienteDetalheComponent } from './components/cliente-detalhe/cliente-detalhe.component';
 
 
 
@@ -54,6 +56,8 @@ export function tokenGetter() {
     RegistrarComponent,
     HomeComponent,
     ClientesComponent,
+    ClienteListaComponent,
+    ClienteDetalheComponent,
   ],
   imports: [
     BrowserModule,
