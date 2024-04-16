@@ -5,9 +5,6 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { RegistrarComponent } from './components/usuario/registrar/registrar.component';
 import { HomeComponent } from './components/home/home.component';
-import { ClientesComponent } from './components/clientes/clientes.component';
-import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
-import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,16 +15,15 @@ const routes: Routes = [
     children: [
       { path: 'usuario', redirectTo: 'usuario/perfil' },
       { path: 'cliente', redirectTo: 'cliente/listar'},
-      {
-        path: 'cliente',
-        component: ClientesComponent,
-        children: [
-          { path: 'detalhe/:id', component: ClienteDetalheComponent },
-          { path: 'detalhe', component: ClienteDetalheComponent },
-          { path: 'lista', component: ClienteListaComponent },
-        ],
-      
-      }
+      // {
+      //   path: 'cliente',
+      //   component: ClientesComponent,
+      //   children: [
+      //     { path: 'detalhe/:id', component: ClienteDetalheComponent },
+      //     { path: 'detalhe', component: ClienteDetalheComponent },
+      //     { path: 'lista', component: ClienteListaComponent },
+      //   ],      
+      // }
     ],
   },
   {

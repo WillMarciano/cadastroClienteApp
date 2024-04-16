@@ -6,5 +6,4 @@ export interface Cliente {
     email: string;
     logotipo: string;
     logradouros: Logradouro[];
-    dataCadastro: string;
 }

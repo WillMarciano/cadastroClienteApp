@@ -35,10 +35,7 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
-import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
-import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
-import { LogradouroService } from './services/logradouro.service';
-import { ClienteService } from './services/cliente.service';
+
 
 
 defineLocale('pt-br', ptBrLocale);
@@ -57,8 +54,6 @@ export function tokenGetter() {
     RegistrarComponent,
     HomeComponent,
     ClientesComponent,
-    ClienteListaComponent,
-    ClienteDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -92,8 +87,6 @@ export function tokenGetter() {
   ],
   providers: [
     AccountService,
-    ClienteService,
-    LogradouroService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
