@@ -12,9 +12,9 @@ export class ClienteService {
 
   constructor(private http: HttpClient) {}
 
-  public buscarCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http
-      .get<Cliente>(`${this.baseUrl}/buscarCliente}`)
-      .pipe(take(1));
+  buscarCliente(cliente: Cliente): Observable<Cliente> {
+    console.log('Buscando cliente', cliente);
+    console.log('URL', `${this.baseUrl}/buscarCliente`);
+    return this.http.get<Cliente>(`${this.baseUrl}/buscarCliente`).pipe(take(1));
   }
 }
