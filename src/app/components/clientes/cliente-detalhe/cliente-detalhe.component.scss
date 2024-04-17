@@ -1,0 +1,62 @@
+label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.iconesSociais {
+    color: rgb(94, 94, 94);
+}
+
+.capitalize {
+    text-transform: capitalize;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    color: silver;
+}
+
+.tab-pane {
+    padding: 20px 8px 8px;
+    border-top: 0px;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+}
+
+.card-evento {
+    position: sticky;
+    --default-height: 25px;
+    top: var(--default-height);
+}
+
+.card-evento-view {
+    position: sticky;
+    top: 10px;
+    .form-group{
+        display: none;
+    }
+}
+
+.card-img-block img {
+    cursor: pointer;
+    border-radius: 3px 3px 0 0;
+    width: 50%;
+}
+
+.card-img-block {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

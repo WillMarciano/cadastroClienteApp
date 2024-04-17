@@ -11,22 +11,23 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-cliente-lista',
   templateUrl: './cliente-lista.component.html',
-  styleUrls: ['./cliente-lista.component.scss']
+  styleUrls: ['./cliente-lista.component.scss'],
 })
 export class ClienteListaComponent {
   modalRef?: BsModalRef;
-  public cliente : Cliente;
+  public cliente: Cliente;
   public logradouros: Logradouro[] = [];
   public clienteId = 0;
+  logoImage: string;
 
   public larguraImagem = 150;
   public margemImagem = 2;
   public exibirImagem = true;
-  
+
   constructor(
     private clienteService: ClienteService,
     private modalService: BsModalService,
-    private toastr : ToastrService,
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private router: Router
   ) {}
@@ -53,15 +54,16 @@ export class ClienteListaComponent {
   public buscarCliente(): any {
     this.spinner.show();
     this.clienteService.buscarCliente(this.cliente).subscribe({
-      next: (cliente: Cliente) => {
+      next: (cliente: Cliente) => {        
         this.cliente = cliente;
+
+        if (this.cliente.logotipo !== null && this.cliente.logotipo !== '')
+          this.logoImage = 'data:image/jpeg;base64,' + cliente.logotipo;
         this.spinner.hide();
-        console.log('Cliente encontrado', cliente);
       },
       error: (error) => {
         this.spinner.hide();
-        this.toastr.error('Erro ao buscar cliente', 'Erro');
-      }
+      },
     });
   }
 
@@ -70,7 +72,6 @@ export class ClienteListaComponent {
     this.clienteId = clienteId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-  
 
   detalheCliente(id: number): void {
     this.router.navigate([`cliente/detalhe/${id}`]);
@@ -78,5 +79,5 @@ export class ClienteListaComponent {
 
   public pageChanged(event): void {
     this.buscarCliente();
-  }       
+  }
 }

@@ -19,7 +19,6 @@ export class LogradouroService {
   }
 
   buscarEnderecos(): Observable<Logradouro[]> {    
-    console.log('URL', `${this.baseUrl}/buscarEnderecos`);
     return this.http
       .get<Logradouro[]>(`${this.baseUrl}/buscarEnderecos`)
       .pipe(take(1));

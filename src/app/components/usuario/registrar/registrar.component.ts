@@ -58,7 +58,6 @@ export class RegistrarComponent {
       },
       error: (error: any) => {
         this.toaster.error("Não foi possível realizar o cadastro", 'Erro');
-        console.log(error);
       },
     });
   }

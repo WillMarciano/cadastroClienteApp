@@ -49,34 +49,35 @@
     <div class="col-6">
         <div class="card">
             <div class="card-body">
-                <form [formGroup]="form" class="p-3">
+                <div class="p-3">
                     <div class="row">
                         <div class="d-flex border-bottom">
                             <h4 class="me-auto">Logotipo</h4>
                             <h4>
                                 <i class="fas fa-image"></i>
                             </h4>
+                        </div>
+                    </div>
+                    <div class="card-evento-view shadow-sm mt-3">
+                        <div class="form-row">
+                            <div class="form-group m-0">
+                                <input type="file" #file (change)="onFileChange($event)" class="form-control is-invalid" />
+                            </div>
+                        </div>
+        
+                        <div class="card profile-card-2 text-center">
+                            <div class="card-img-block mt-4">
+                                <img *ngIf="logoImage" class="image" [src]="logoImage" class="img-fluid" (click)="file.click()"
+                                alt="Card image cap" tooltip="Upload de Nova Imagem" [adaptivePosition]="false"
+                                placement="bottom" />
                             
-
-
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-outline-secondary border" (click)="voltar()">
-                                    Voltar
-                                </button>
-                            </div>
-                            <div class="col text-end">
-                                <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarCliente()">
-                                    Salvar
-                                </button>
+                            <img *ngIf="!logoImage" class="image" [src]="cliente.logotipo || 'assets/img/semImagem.png'"
+                                class="img-fluid" (click)="file.click()" alt="Card image cap"
+                                tooltip="Upload de Nova Imagem" [adaptivePosition]="false" placement="bottom" />
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
                     <th class="d-none d-md-table-cell">
                         <button class="btn btn-outline-light btn-sm" (click)="alterImage()">
                             <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
-                            {{ !exibirImagem ? "Exibir" : "Ocultar" }}
+                            {{ !exibirImagem ? "Exibir" : "Ocultar" }} Logotipo
                         </button>
                     </th>
                     <th class="titens" scope="col">#</th>
@@ -20,8 +20,8 @@
                 <tr (click)="detalheCliente(cliente.id)" style="cursor: pointer" data-bs-toggle="tooltip"
                     title="Editar Cliente">
                     <td class="d-none d-md-table-cell">
-                        <img [collapse]="!exibirImagem" [isAnimated]="true" [src]="mostraImagem(cliente.logotipo)"
-                            [style.width.px]="larguraImagem" [style.margin.px]="margemImagem" />
+                        <img [collapse]="!exibirImagem" [isAnimated]="true" [src]="logoImage || 'assets/img/semImagem.png'"
+                        [style.width.px]="larguraImagem" [style.margin.px]="margemImagem" />
                     </td>
                     <td class="titens">{{ cliente.id }}</td>
                     <td class="titens">{{ cliente.nome }}</td>

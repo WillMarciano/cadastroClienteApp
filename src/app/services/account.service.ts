@@ -29,12 +29,10 @@ export class AccountService {
   }
 
   public register(model: any): Observable<void> {
-    console.log("aqui");
     return this.http.post<User>(this.baseUrl + 'registrar', model).pipe(
       take(1),
       map((response: User) => {
         const user = response;
-        console.log(response)
         if (user) {
           this.setCurrentUser(user);
         }

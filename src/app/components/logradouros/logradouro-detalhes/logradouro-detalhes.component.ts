@@ -72,7 +72,6 @@ export class LogradouroDetalhesComponent implements OnInit{
         next: (logradouros: Logradouro) => {
           this.logradouro = { ...logradouros };
           this.form.patchValue(this.logradouro);
-          console.log(this.logradouro);
           this.spinner.hide();
         },
         error: (error: any) => {
@@ -97,7 +96,6 @@ export class LogradouroDetalhesComponent implements OnInit{
 
     this.logradouroService.salvarEndereco(endereco).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.spinner.hide();
         this.toastr.success('Endereço salvo com sucesso!');
         this.router.navigate(['/logradouro/lista']);

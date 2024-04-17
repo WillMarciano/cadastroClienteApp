@@ -13,8 +13,6 @@ export class ClienteService {
   constructor(private http: HttpClient) {}
 
   buscarCliente(cliente: Cliente): Observable<Cliente> {
-    console.log('Buscando cliente', cliente);
-    console.log('URL', `${this.baseUrl}/buscarCliente`);
     return this.http.get<Cliente>(`${this.baseUrl}/buscarCliente`).pipe(take(1));
   }
 
@@ -24,5 +22,18 @@ export class ClienteService {
 
   atualizarCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.put<Cliente>(`${this.baseUrl}/atualizarCliente`, cliente).pipe(take(1));
+  }
+
+  salvarLogotipoCliente(cliente: Cliente, file: File): Observable<Cliente> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('cliente', JSON.stringify(cliente));
+    return this.http.post<Cliente>(`${this.baseUrl}/salvarLogotipoCliente`, formData).pipe(take(1));
+  }
+
+  UploadFile(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<string>(`${this.baseUrl}/uploadFile`, formData).pipe(take(1));
   }
 }

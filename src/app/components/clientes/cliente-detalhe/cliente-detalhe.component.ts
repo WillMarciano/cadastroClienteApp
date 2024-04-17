@@ -22,6 +22,7 @@ export class ClienteDetalheComponent {
   logoImage: string;
   cliente: Cliente;
   clienteId: number;
+  fileImage: File;
 
   constructor(
     private fb: FormBuilder,
@@ -65,6 +66,17 @@ export class ClienteDetalheComponent {
       next: (cliente: Cliente) => {
         this.cliente = { ...cliente };
         this.form.patchValue(this.cliente);
+
+        if (
+          cliente.logotipo !== null &&
+          cliente.logotipo !== '' &&
+          cliente.logotipo !== undefined
+        )
+          this.logoImage = 'data:image/jpeg;base64,' + cliente.logotipo;
+        else this.logoImage = 'data:image/jpeg;base64,' + 'assets/img/semimagem.png';
+
+
+
         this.spinner.hide();
       },
       error: (error: any) => {
@@ -73,7 +85,15 @@ export class ClienteDetalheComponent {
       },
     });
   }
-
+  private getBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+    });
+}
+ 
   salvarCliente(): void {
     if (this.form.invalid) {
       return;
@@ -84,21 +104,56 @@ export class ClienteDetalheComponent {
     this.cliente.id = this.clienteId;
 
     this.spinner.show();
-    this.clienteService.atualizarCliente(this.cliente).subscribe({
-      next: () => {
-        this.spinner.hide();
-        this.toastr.success('Dados do cliente atualizado', 'Sucesso!');
-      },
-      error: (error: any) => {
-        this.spinner.hide();
-        this.toastr.error('Erro ao tentar atualizar cliente');
-      },
-    })
-    .add(() => this.spinner.hide())
-    ;
+    this.clienteService
+      .atualizarCliente(this.cliente)
+      .subscribe({
+        next: () => {
+          this.spinner.hide();
+          this.toastr.success('Dados do cliente atualizado', 'Sucesso!');
+        },
+        error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao tentar atualizar cliente');
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   voltar(): void {
     this.router.navigate(['/cliente/lista']);
+  }
+
+  public onFileChange(ev: any): void {
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => (this.logoImage = event.target.result);
+
+    this.fileImage = ev.target.files;
+    reader.readAsDataURL(this.fileImage[0]);
+
+    this.uploadImagem();
+  }
+
+  public uploadImagem(): void {
+    if (this.fileImage === undefined) {
+      return;
+    }
+
+    this.spinner.show();
+    this.clienteService
+      .UploadFile(this.fileImage[0])
+      .subscribe({
+        next: (result: any) => {
+          if (result !== null && result !== '') {
+            this.cliente.logotipo = result;
+            this.toastr.success('Logotipo atualizado com sucesso', 'Sucesso!');
+            this.carregarCliente();
+          }
+        },
+        error: (error: any) => {
+          this.toastr.error('Erro ao tentar atualizar logotipo');
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 }
