@@ -20,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LogradouroDetalhesComponent {
   public logradouro: Logradouro;
   public form: FormGroup;
+  modoSalvar = 'post';
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +32,10 @@ export class LogradouroDetalhesComponent {
 
   get f(): any {
     return this.form.controls;
+  }
+
+  get modoEditar(): boolean {
+    return this.modoSalvar === 'put';
   }
 
   public cssValidator(campoValidacao: FormControl | AbstractControl): any {
@@ -74,6 +79,6 @@ export class LogradouroDetalhesComponent {
   }
 
   public resetForm(): void {
-    this.form.reset();
+    this.router.navigate([`logradouro/lista/`]);
   }
 }

@@ -1,18 +1,5 @@
 <div class="card rounded shadow-sm p-3 mb-5">
     <div class="d-flex align-items-center">
-      <div class="flex-fill pe-3">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Filtro:</div>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Buscar por endereços cadastrados"
-            (input)="filtrarLogradouros($event.target)"
-          />
-        </div>
-      </div>
       <div>
         <a
           class="d-flex align-items-center btn btn-primary btn-sm"
@@ -23,7 +10,6 @@
         </a>
       </div>
     </div>
-  
     <br />
     <div class="table-responsive">
       <table class="table table-striped table-hover">

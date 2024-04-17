@@ -82,7 +82,6 @@ export class LogradouroListaComponent {
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
-    console.log('Deletando pipi', this.logradouroId);
     this.logradouroService
       .deletarEndereco(this.logradouroId)
       .subscribe({

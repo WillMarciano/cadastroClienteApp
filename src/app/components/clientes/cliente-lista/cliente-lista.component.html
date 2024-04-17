@@ -9,12 +9,11 @@
                             {{ !exibirImagem ? "Exibir" : "Ocultar" }}
                         </button>
                     </th>
-                    <th scope="col">#</th>
-                    <th class="" scope="col">Nome</th>
-                    <th class="" scope="col">Email</th>
-                    <th class="" scope="col">Logotipo Blob</th>
-                    <th class="" scope="col">Endereços</th>
-                    <th class="" scope="col">Endereços</th>
+                    <th class="titens" scope="col">#</th>
+                    <th class="titens" scope="col">Nome</th>
+                    <th class="titens" scope="col">Email</th>
+                    <th class="titens" scope="col">Logotipo Blob</th>
+                    <th class="titens" scope="col">Endereços</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,15 +22,14 @@
                     <td class="d-none d-md-table-cell">
                         <img [collapse]="!exibirImagem" [isAnimated]="true" [src]="mostraImagem(cliente.logotipo)"
                             [style.width.px]="larguraImagem" [style.margin.px]="margemImagem" />
-                    </td>
-                    <th>{{ cliente.id }}</th>
-                    <td class="">{{ cliente.nome }}</td>
-                    <td class="">{{ cliente.email }}</td>
-                    <td class="">{{ cliente.logotipo.slice(0, 10) }}</td>
-                    <td class="">
+                    </td >
+                    <td>{{ cliente.id }}</td>
+                    <td class="titens">{{ cliente.nome }}</td>
+                    <td class="titens">{{ cliente.email }}</td>
+                    <td class="titens">{{ cliente.logotipo.slice(0, 10) }}</td>
+                    <td class="titens">
                         <button class="btn btn-primary" (click)="navegarParaLogradouros()">Visualizar Endereços</button>
                     </td>
-                    <td class="">{{ cliente.logradouros[0].endereco }}</td>
                 </tr>
             </tbody>
         </table>

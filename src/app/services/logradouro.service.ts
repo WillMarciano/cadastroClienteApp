@@ -20,24 +20,11 @@ export class LogradouroService {
   }
 
   deletarEndereco(id: number): Observable<any> {
-    console.log('Deletando enderecos', id);
-    console.log('URL', `${this.baseUrl}/deletarEndereco/${id}`);
     return this.http
-      .delete<any>(`${this.baseUrl}/deletarEndereco/${id}`)
+      .delete<string>(`${this.baseUrl}/deletarEndereco/${id}`)
       .pipe(take(1));
   }
 
-  // salvarEndereco(logradouro: Logradouro): Observable<Logradouro> {
-  //   console.log('Salvando enderecos', logradouro);
-  //   console.log('URL', `${this.baseUrl}/salvarEndereco`);
-  //   return this.http.post<Logradouro>(`${this.baseUrl}/salvarEndereco`, logradouro).pipe(take(1));
-  // }
-
-  // public salvarEndereco(logradouro: Logradouro): Observable<Logradouro> {
-  //   return this.http
-  //     .post<Logradouro>(`${this.baseUrl}/salvarEndereco`, {} as Logradouro)
-  //     .pipe(take(1));
-  // }
   salvarEndereco(endereco: any): Observable<any> {
     return this.http
       .post<any>(`${this.baseUrl}/SalvarEndereco`, endereco)
