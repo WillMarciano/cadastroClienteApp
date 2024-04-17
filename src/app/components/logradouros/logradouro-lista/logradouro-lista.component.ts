@@ -113,6 +113,14 @@ export class LogradouroListaComponent {
     this.router.navigate([`logradouro/detalhe/${id}`]);
   }
 
+  voltar(): void {
+    this.router.navigate([`cliente/lista/`]);
+  }
+
+  cadastrar(): void {
+    this.router.navigate([`logradouro/detalhe`]);
+  }
+
   public pageChanged(event): void {
     this.buscarCliente();
   }
