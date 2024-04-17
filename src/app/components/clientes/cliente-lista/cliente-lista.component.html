@@ -22,8 +22,8 @@
                     <td class="d-none d-md-table-cell">
                         <img [collapse]="!exibirImagem" [isAnimated]="true" [src]="mostraImagem(cliente.logotipo)"
                             [style.width.px]="larguraImagem" [style.margin.px]="margemImagem" />
-                    </td >
-                    <td>{{ cliente.id }}</td>
+                    </td>
+                    <td class="titens">{{ cliente.id }}</td>
                     <td class="titens">{{ cliente.nome }}</td>
                     <td class="titens">{{ cliente.email }}</td>
                     <td class="titens">{{ cliente.logotipo.slice(0, 10) }}</td>

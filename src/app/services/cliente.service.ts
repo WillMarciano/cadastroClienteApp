@@ -17,4 +17,12 @@ export class ClienteService {
     console.log('URL', `${this.baseUrl}/buscarCliente`);
     return this.http.get<Cliente>(`${this.baseUrl}/buscarCliente`).pipe(take(1));
   }
+
+  buscarClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.baseUrl}/buscarClientes`).pipe(take(1));
+  }
+
+  atualizarCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.baseUrl}/atualizarCliente`, cliente).pipe(take(1));
+  }
 }
