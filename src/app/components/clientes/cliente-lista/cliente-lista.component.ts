@@ -36,8 +36,8 @@ export class ClienteListaComponent {
     this.buscarCliente();
   }
 
-  navegarParaHome() {
-    this.router.navigate(['/']);
+  navegarParaLogradouros() {
+    this.router.navigate([`logradouro/lista`]);
   }
 
   public alterImage(): void {
