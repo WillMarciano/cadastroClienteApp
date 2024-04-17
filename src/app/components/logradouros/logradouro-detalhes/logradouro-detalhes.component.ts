@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Logradouro } from './../../../models/Logradouro';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -6,8 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Logradouro } from '@app/models/Logradouro';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LogradouroService } from '@app/services/logradouro.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -17,9 +17,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './logradouro-detalhes.component.html',
   styleUrls: ['./logradouro-detalhes.component.scss'],
 })
-export class LogradouroDetalhesComponent {
-  public logradouro: Logradouro;
-  public form: FormGroup;
+export class LogradouroDetalhesComponent implements OnInit{
+  logradouro: Logradouro;
+  logradouroId: number;
+  form: FormGroup;
   modoSalvar = 'post';
 
   constructor(
@@ -27,7 +28,8 @@ export class LogradouroDetalhesComponent {
     private logradouroService: LogradouroService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private activatedRouter: ActivatedRoute,
   ) {}
 
   get f(): any {
@@ -43,6 +45,7 @@ export class LogradouroDetalhesComponent {
   }
 
   public ngOnInit(): void {
+    this.carregarEvento();
     this.validation();
   }
 
@@ -59,11 +62,38 @@ export class LogradouroDetalhesComponent {
     });
   }
 
+  public carregarEvento(): void{
+    this.logradouroId = +this.activatedRouter.snapshot.paramMap.get('id');
+
+    if (this.logradouroId !== null && this.logradouroId !== 0) {
+      this.spinner.show();
+      this.modoSalvar = 'put';
+      this.logradouroService.buscarEndereco(this.logradouroId).subscribe({
+        next: (logradouros: Logradouro) => {
+          this.logradouro = { ...logradouros };
+          this.form.patchValue(this.logradouro);
+          console.log(this.logradouro);
+          this.spinner.hide();
+        },
+        error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao tentar carregar logradouro');
+          console.error(error);
+        },
+      });
+    }
+  }
+
   salvarEndereco(): void {
     const endereco = {
       id: this.form.value.id,
       endereco: this.form.value.endereco,
     };
+
+    if (this.modoSalvar === 'put'){
+      endereco.id = this.logradouroId;
+    }
+
 
     this.logradouroService.salvarEndereco(endereco).subscribe({
       next: (response: any) => {

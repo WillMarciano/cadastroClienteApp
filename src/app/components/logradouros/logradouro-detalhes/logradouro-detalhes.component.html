@@ -1,10 +1,10 @@
 <div class="row">
-    <div [ngClass]="{ 'col-md-12': !modoEditar }">
+    <div>
         <div class="card rounded shadow mb-3">
             <form [formGroup]="form" class="p-3">
                 <div class="row">
                     <div class="d-flex border-bottom">
-                        <h4 class="me-auto">Cadastro Novo Endereço</h4>
+                        <h4 class="me-auto">Dados do Endereço</h4>
                         <h4>
                             <i class="fas fa-home"></i>
                         </h4>
@@ -45,52 +45,4 @@
             </div>
         </div>
     </div>
-    <div class="card rounded shadow mb-3" *ngIf="modoEditar">
-        <!-- <p>Form value: {{form.controls['lotes'].value| json}}</p>
-          <p>Form valid: {{form.controls['lotes'].status | json}}</p> -->
-          <div class="card rounded shadow mb-3">
-            <form [formGroup]="form" class="p-3">
-                <div class="row">
-                    <div class="d-flex border-bottom">
-                        <h4 class="me-auto">Editar Endereço</h4>
-                        <h4>
-                            <i class="fas fa-house"></i>
-                        </h4>
-                    </div>
-                    <div class="col">
-                        <!-- {{ form.value | json }} -->
-                        <br>
-                        <label>Endereco</label>
-                        <input type="text" class="form-control" [ngClass]="cssValidator(f.endereco)"
-                            formControlName="endereco" placeholder="Insira o endereco" />
-                        <div *ngIf="f.endereco?.hasError('required')" class="invalid-feedback">
-                            Campo Endereço é obrigatório
-                        </div>
-                        <div *ngIf="f.endereco?.hasError('minlength')" class="invalid-feedback">
-                            Campo Endereço deve ter no mínimo 4 caracteres.
-                        </div>
-                        <div *ngIf="f.endereco?.hasError('maxlength')" class="invalid-feedback">
-                            Campo Endereço deve ter no máximo 50 caracteres.
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="card-footer">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-outline-secondary border" (click)="resetForm()">
-                                Voltar
-                            </button>
-                        </div>
-                        <div class="col text-end">
-                            <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarEndereco()">
-                                Salvar Endereço
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-
+</div>
