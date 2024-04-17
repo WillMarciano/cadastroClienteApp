@@ -12,7 +12,7 @@ import { Subject, debounceTime } from 'rxjs';
 @Component({
   selector: 'app-logradouro-lista',
   templateUrl: './logradouro-lista.component.html',
-  styleUrls: ['./logradouro-lista.component.scss']
+  styleUrls: ['./logradouro-lista.component.scss'],
 })
 export class LogradouroListaComponent {
   modalRef?: BsModalRef;
@@ -55,20 +55,25 @@ export class LogradouroListaComponent {
 
   public buscarCliente(): any {
     this.spinner.show();
-    this.logradouroService.buscarEnderecos(this.logradouro).subscribe({
-      next: (logradouro: Logradouro) => {
-        this.logradouro = logradouro;
-        this.spinner.hide();
-        console.log('logradouro encontrado', logradouro);
-      },
-      error: (error) => {
-        this.spinner.hide();
-        this.toastr.error('Erro ao buscar cliente', 'Erro');
-      }
-    });
+    this.logradouroService
+      .buscarEnderecos()
+      .subscribe({
+        next: (logradouros: Logradouro[]) => {
+          this.logradouros = logradouros;
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Erro ao tentar carregar os logradouros', 'Erro');
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
-  openModal(event: any, template: TemplateRef<any>, logradouroId: number): void {
+  openModal(
+    event: any,
+    template: TemplateRef<any>,
+    logradouroId: number
+  ): void {
     event.stopPropagation();
     this.logradouroId = logradouroId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
@@ -77,6 +82,7 @@ export class LogradouroListaComponent {
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
+    console.log('Deletando pipi', this.logradouroId);
     this.logradouroService
       .deletarEndereco(this.logradouroId)
       .subscribe({

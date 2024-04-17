@@ -14,6 +14,7 @@
                     <th class="" scope="col">Email</th>
                     <th class="" scope="col">Logotipo Blob</th>
                     <th class="" scope="col">Endereços</th>
+                    <th class="" scope="col">Endereços</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +30,8 @@
                     <td class="">{{ cliente.logotipo.slice(0, 10) }}</td>
                     <td class="">
                         <button class="btn btn-primary" (click)="navegarParaLogradouros()">Visualizar Endereços</button>
-                      </td>
+                    </td>
+                    <td class="">{{ cliente.logradouros[0].endereco }}</td>
                 </tr>
             </tbody>
         </table>

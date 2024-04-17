@@ -8,7 +8,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Buscar por tema e Local"
+            placeholder="Buscar por endereços cadastrados"
             (input)="filtrarLogradouros($event.target)"
           />
         </div>
@@ -31,7 +31,7 @@
           <tr>
             <th scope="col">#</th>
             <th class="" scope="col">Endereco</th>
-            <th scope="col">Opções</th>
+            <th class="opcoes" scope="col">Opções</th>
           </tr>
         </thead>
         <tbody *ngIf="logradouros && logradouros.length">
@@ -40,19 +40,19 @@
             (click)="detalheLogradouro(logradouro.id)"
             style="cursor: pointer"
             data-bs-toggle="tooltip"
-            title="Editar Evento"
+            title="Editar Endereço"
           >
             <td class="">{{ logradouro.id }}</td>
             <td class="">{{ logradouro.endereco }}</td>
-            <td>
+            <td class="opcoes">
               <button
                 type="button"
-                class="btn btn-outline-danger btn-lg"
+                class="btn btn-outline-danger btn-sm"
                 data-bs-toggle="tooltip"
-                title="Excluir"
+                title="Excluir Endereço"
                 (click)="openModal($event, template, logradouro.id)"
               >
-                <i class="fa fa-trash"></i>
+              Excluir <i class="fa fa-trash"></i>
               </button>
             </td>
           </tr>
@@ -65,24 +65,12 @@
           </tr>
         </tfoot>
       </table>
-      <div class="d-flex justify-content-center mt-4">
-        <pagination
-          [boundaryLinks]="true"
-          (pageChanged)="pageChanged($event)"
-          pageBtnClass="btn"
-          previousText="&lsaquo;"
-          nextText="&rsaquo;"
-          firstText="&laquo;"
-          lastText="&raquo;"
-        >
-        </pagination>
-      </div>
     </div>
   </div>
   
   <ng-template #template>
     <div class="modal-body text-center">
-      <p>Tem certeza que quer deletar o Endereço de código {{ this.logradouro.endereco }}</p>
+      <p>Tem certeza que quer deletar o Endereço de código {{ this.logradouroId }}</p>
       <button type="button" class="btn btn-outline-danger" (click)="confirm()">
         Sim
       </button>
