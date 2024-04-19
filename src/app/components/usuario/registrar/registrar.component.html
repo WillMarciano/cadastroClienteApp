@@ -59,10 +59,10 @@
                       f.confirmPassword?.errors && f.confirmPassword?.touched
                   }" formControlName="confirmPassword" autocomplete="new-password" placeholder="Confirme a Senha" />
             <div *ngIf="f.confirmPassword?.hasError('required')" class="invalid-feedback">
-              Campo Confirmar Password é obrigatório
+              Campo Confirmar Senha é obrigatório
             </div>
             <div *ngIf="f.confirmPassword?.hasError('MustMatch')" class="invalid-feedback">
-              Confirmação de password divergente.
+              Confirmação de Senha divergente.
             </div>
           </div>
         </div>
