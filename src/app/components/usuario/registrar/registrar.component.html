@@ -45,6 +45,12 @@
             <div *ngIf="f.password?.hasError('minlength')" class="invalid-feedback">
               Campo Senha deve ter no mínimo 6 caracteres.
             </div>
+            <div *ngIf="f.password?.hasError('maxlength')" class="invalid-feedback">
+              Campo Senha deve ter no máximo 20 caracteres.
+            </div>
+            <div *ngIf="f.password?.hasError('passwordStrength')" class="invalid-feedback">
+              {{ f.password?.errors?.passwordStrength }}
+            </div>
           </div>
           <div class="col-sm-6">
             <label for="">Confirmar Senha:</label>

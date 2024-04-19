@@ -1,8 +1,10 @@
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import {
+  AbstractControl,
   AbstractControlOptions,
   FormBuilder,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -34,6 +36,21 @@ export class RegistrarComponent {
     this.validation();
   }
 
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasLowerCase = /[a-z]/.test(value);
+    const hasSpecialCharacter = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
+  
+    const passwordValid = hasUpperCase && hasLowerCase && hasSpecialCharacter;
+  
+    if (!passwordValid) {
+      return { passwordStrength: 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial.' };
+    }
+  
+    return null;
+  }
+
   public validation(): void {
     const formOptions: AbstractControlOptions = {
       validators: ValidatorField.MustMatch('password', 'confirmPassword'),
@@ -43,7 +60,7 @@ export class RegistrarComponent {
       {
         nome: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20), this.passwordValidator]],
         confirmPassword: ['', [Validators.required]],
       },
       formOptions
